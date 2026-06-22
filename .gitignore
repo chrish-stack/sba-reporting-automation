@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+
+# Local/client data
+/data/
+/raw/
+/exports/
+/outputs/
+*.xlsx
+*.xls
+*.csv
+*.tsv
+*.pdf
+*.png
+*.jpg
+*.jpeg
+
+# Keep sanitized fixtures only if intentionally added under samples/
+!/samples/.gitkeep
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
