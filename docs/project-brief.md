@@ -42,17 +42,20 @@ Known blockers:
 
 ## First automation target
 
-Build a data normalization system, not a report redesign.
+Build a local pull-and-staging pipeline, not a hosted platform or report redesign.
 
 Initial pipeline:
 
-1. Import raw platform export files.
-2. Normalize column names across platforms.
-3. Parse campaign/ad set/ad name fields.
-4. Assign clean values for platform, campaign, audience, objective, pillar, placement, and month.
-5. Apply platform-specific rules.
-6. Output a cleaned table that matches the current weekly Google Sheet structure.
-7. Let the existing pivot tables continue doing the analysis until the cleaned-data layer is trusted.
+1. Ingest raw platform export files manually at first.
+2. Validate date range, platform, export level, and required columns.
+3. Normalize column names across platforms.
+4. Parse campaign/ad set/ad name fields.
+5. Assign clean values for platform, campaign, audience, objective, pillar, placement, and month.
+6. Apply platform-specific rules.
+7. Output a cleaned table that matches the current weekly Google Sheet structure.
+8. Let the existing pivot tables and ChatGPT-assisted review continue until the cleaned pull/staging layer is trusted.
+
+Later, once the export-to-output path is validated, add API pulling through TapClicks/platform APIs and optional AI insight generation using the team's own API keys.
 
 ## Rules captured so far
 

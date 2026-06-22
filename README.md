@@ -1,18 +1,22 @@
 # SBA Reporting Automation
 
-Private working repo for the Santa Barbara / Visit Santa Barbara reporting automation project.
+Public planning/code repo for the Santa Barbara / Visit Santa Barbara reporting automation project.
 
 ## Current goal
 
-Build a lightweight data normalization pipeline that turns raw weekly paid-media exports into a clean table matching the existing `SBA - Weekly Reporting 2024/25` Google Sheet structure.
+Build a local-first reporting automation pipeline that the SBA reporting owner can run on their own computer.
 
-This is not a full report redesign. The first win is to preserve the current workflow while removing the repetitive manual cleanup:
+The first official deliverable is a pull-and-staging assistant:
 
-1. Import raw platform exports.
-2. Normalize columns across platforms.
-3. Parse campaign, ad set, ad name, platform, audience, objective, pillar, placement, and month.
-4. Apply platform-specific rules.
-5. Output a clean CSV/table ready for the weekly reporting sheet and existing pivot tables.
+1. Ingest manually exported platform files first, then support APIs once access is confirmed.
+2. Validate that the pull/export has the right date range, platform, granularity, and columns.
+3. Normalize columns across platforms.
+4. Parse campaign, ad set, ad name, platform, audience, objective, pillar, placement, and month.
+5. Apply embedded Santa Barbara reporting rules.
+6. Output a clean CSV/table ready for the existing weekly reporting sheet and pivot tables.
+7. Optionally generate an AI insight prompt/draft using the user's own OpenAI/Claude API key.
+
+This is not a full hosted platform at the start. The best first version is a handoff-friendly local pipeline: raw exports in, validated/staged weekly reporting files out.
 
 ## Source context captured so far
 
