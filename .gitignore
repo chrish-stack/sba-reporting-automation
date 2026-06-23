@@ -20,8 +20,11 @@ __pycache__/
 *.jpg
 *.jpeg
 
-# Keep sanitized fixtures only if intentionally added under samples/
+# Keep sanitized fixtures only if intentionally added under samples/ or tests/fixtures/
 !/samples/.gitkeep
+!/samples/README.md
+!/tests/fixtures/
+!/tests/fixtures/*.csv
 
 # OS/editor
 .DS_Store
