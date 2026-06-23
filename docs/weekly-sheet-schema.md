@@ -221,15 +221,31 @@ Guardrail:
 
 - Blank or zero denominators should produce blank/flagged values rather than noisy `#DIV/0!` in generated outputs.
 
+## CSV export confirmation
+
+Chris provided `SBA - Weekly Reporting 2025_26 - All Data - Weekly.csv` after the PDF/screenshots.
+
+Confirmed from the CSV:
+
+- 9,926 rows including header.
+- 9,925 data rows.
+- 26 columns.
+- The first 25 columns match the visible weekly reporting schema.
+- The 26th column has a blank header and contains manual notes/comments in some rows.
+- The CSV header uses `Pin Clicks /Link Clicks` without a space after the slash; the pipeline should accept this as an alias for the canonical `Pin Clicks / Link Clicks`.
+
+See `docs/csv-data-profile.md` for aggregate-safe profile details.
+
 ## First implementation implication
 
 The first real code should define this canonical row schema and validation rules before platform-specific parsing gets too complex.
 
 Recommended first code tasks:
 
-1. Define `WeeklyRecord` schema with the 25 visible columns above.
+1. Define `WeeklyRecord` schema with the 25 visible columns plus optional `Manual Notes` for the blank-header 26th column.
 2. Define required vs optional metrics by `Goal`.
 3. Build CSV/XLSX ingestion for an export matching this schema.
-4. Generate validation report for missing columns, bad date ranges, unknown platforms/campaigns/audiences/goals, and zero-denominator formulas.
-5. Generate a cleaned `weekly_sheet_ready.csv` in the same column order.
-6. Generate pivot-style validation summaries for weekly totals.
+4. Add header alias mapping for minor variants such as `Pin Clicks /Link Clicks`.
+5. Generate validation report for missing columns, bad date ranges, unknown platforms/campaigns/audiences/goals, and zero-denominator formulas.
+6. Generate a cleaned `weekly_sheet_ready.csv` in the same column order.
+7. Generate pivot-style validation summaries for weekly totals.
