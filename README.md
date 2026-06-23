@@ -50,6 +50,38 @@ docs/                    # project brief, questions, working notes
 tests/                   # parser and fixture tests
 ```
 
+## v0.01 local build
+
+v0.01 can normalize an `All Data - Weekly` CSV export into a clean weekly-sheet-ready CSV plus validation flags.
+
+Run from the repo root:
+
+```bash
+PYTHONPATH=src python -m sba_reporting.cli normalize \
+  --input "data/raw/google-sheet-examples-2026-06-23/SBA - Weekly Reporting 2025_26 - All Data - Weekly.csv" \
+  --output-dir "outputs/v0.01-smoke"
+```
+
+Generated files:
+
+- `weekly_sheet_ready.csv` — normalized rows in the canonical weekly reporting column order.
+- `flags_review.csv` — row-level warnings and alias normalizations for human review.
+- `validation_report.md` — plain-English run summary with counts and issue rollups.
+
+Current v0.01 behavior:
+
+- Skips fiscal-year marker rows like `FY25/26`.
+- Skips incomplete placeholder rows that have a date but no ad identity fields.
+- Preserves the blank 26th source column as `Manual Notes`.
+- Normalizes known aliases like `Youtube` -> `YouTube`, `Co op`/`Co Op` -> `Co-Op`, and `Norcal` -> `NorCal`.
+- Flags source `#DIV/0!` formula errors instead of silently trusting them.
+
+Run tests:
+
+```bash
+PYTHONPATH=src python -m pytest -q
+```
+
 ## Next input needed from accounting/reporting team
 
 See `docs/intake-questions.md`.
