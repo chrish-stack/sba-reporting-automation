@@ -29,6 +29,10 @@ def test_normalize_csv_outputs_clean_rows_and_flags(tmp_path: Path):
     assert result.output_csv.exists()
     assert result.flags_csv.exists()
     assert result.validation_report.exists()
+    assert (tmp_path / "summaries" / "weekly_summary.csv").exists()
+    assert (tmp_path / "summaries" / "audiences_summary.csv").exists()
+    assert (tmp_path / "summaries" / "campaigns_summary.csv").exists()
+    assert (tmp_path / "summaries" / "ad_per_audience_summary.csv").exists()
 
     rows = list(csv.DictReader(result.output_csv.open(encoding="utf-8")))
     assert rows[0]["Platform"] == "YouTube"
@@ -42,3 +46,11 @@ def test_normalize_csv_outputs_clean_rows_and_flags(tmp_path: Path):
     assert "Formula error in source" in flags_text
     assert "Unexpected campaign" in flags_text
     assert "Unexpected goal" in flags_text
+
+    weekly_rows = list(csv.DictReader((tmp_path / "summaries" / "weekly_summary.csv").open(encoding="utf-8")))
+    youtube_summary = next(row for row in weekly_rows if row["Platform"] == "YouTube")
+    assert youtube_summary["Cost"] == "100"
+    assert youtube_summary["Impressions"] == "10000"
+    assert youtube_summary["CPM"] == "10.00"
+    assert youtube_summary["CPC"] == "10.00"
+    assert youtube_summary["CPM Views to 100%"] == "200.00"

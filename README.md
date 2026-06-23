@@ -50,16 +50,17 @@ docs/                    # project brief, questions, working notes
 tests/                   # parser and fixture tests
 ```
 
-## v0.01 local build
+## v0.02 local build
 
-v0.01 can normalize an `All Data - Weekly` CSV export into a clean weekly-sheet-ready CSV plus validation flags.
+v0.02 adds configurable aliases/vocab and pivot-style summary outputs.
 
 Run from the repo root:
 
 ```bash
 PYTHONPATH=src python -m sba_reporting.cli normalize \
+  --config configs/default_rules.json \
   --input "data/raw/google-sheet-examples-2026-06-23/SBA - Weekly Reporting 2025_26 - All Data - Weekly.csv" \
-  --output-dir "outputs/v0.01-smoke"
+  --output-dir "outputs/v0.02-smoke"
 ```
 
 Generated files:
@@ -67,14 +68,20 @@ Generated files:
 - `weekly_sheet_ready.csv` — normalized rows in the canonical weekly reporting column order.
 - `flags_review.csv` — row-level warnings and alias normalizations for human review.
 - `validation_report.md` — plain-English run summary with counts and issue rollups.
+- `summaries/weekly_summary.csv` — pivot-style rollup by Date, Platform, Goal, Audiences, Campaign.
+- `summaries/audiences_summary.csv` — pivot-style rollup by Audiences, Platform, Campaign, Goal.
+- `summaries/campaigns_summary.csv` — pivot-style rollup by Date, Goal, Platform, Audiences, Campaign.
+- `summaries/ad_per_audience_summary.csv` — pivot-style rollup by Date, Platform, Goal, Audiences, Ad Name.
 
-Current v0.01 behavior:
+Current v0.02 behavior:
 
+- Keeps aliases and controlled vocab in `configs/default_rules.json`.
 - Skips fiscal-year marker rows like `FY25/26`.
 - Skips incomplete placeholder rows that have a date but no ad identity fields.
 - Preserves the blank 26th source column as `Manual Notes`.
 - Normalizes known aliases like `Youtube` -> `YouTube`, `Co op`/`Co Op` -> `Co-Op`, and `Norcal` -> `NorCal`.
 - Flags source `#DIV/0!` formula errors instead of silently trusting them.
+- Generates summary metrics: Frequency, CPM, CPC, CPM Views to 50%, CPM Views to 100%, and CPLPV.
 
 Run tests:
 

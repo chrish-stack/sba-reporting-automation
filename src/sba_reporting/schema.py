@@ -33,13 +33,13 @@ CANONICAL_COLUMNS: list[str] = [
 OPTIONAL_NOTES_COLUMN = "Manual Notes"
 OUTPUT_COLUMNS: list[str] = CANONICAL_COLUMNS + [OPTIONAL_NOTES_COLUMN]
 
-HEADER_ALIASES: dict[str, str] = {
+DEFAULT_HEADER_ALIASES: dict[str, str] = {
     "": OPTIONAL_NOTES_COLUMN,
     "Pin Clicks /Link Clicks": "Pin Clicks / Link Clicks",
     "Pin Clicks / Link Clicks": "Pin Clicks / Link Clicks",
 }
 
-VALUE_ALIASES: dict[str, dict[str, str]] = {
+DEFAULT_VALUE_ALIASES: dict[str, dict[str, str]] = {
     "Platform": {
         "Youtube": "YouTube",
     },
@@ -50,15 +50,6 @@ VALUE_ALIASES: dict[str, dict[str, str]] = {
     "Audiences": {
         "Norcal": "NorCal",
     },
-}
-
-EXPECTED_PLATFORMS = {
-    "Facebook", "Instagram", "YouTube", "TikTok", "Pinterest", "NextDoor", "Reddit"
-}
-EXPECTED_GOALS = {"Traffic", "Awareness", "Video Views", "Direct Response"}
-EXPECTED_CAMPAIGNS = {
-    "Brand", "Co-Op", "Retainer", "Episodic", "Retail", "Air Services",
-    "Compression", "HIT", "Locals", "Weddings", "FIFA",
 }
 
 FORMULA_COLUMNS = {

@@ -1,0 +1,24 @@
+{
+  "header_aliases": {
+    "": "Manual Notes",
+    "Pin Clicks /Link Clicks": "Pin Clicks / Link Clicks",
+    "Pin Clicks / Link Clicks": "Pin Clicks / Link Clicks"
+  },
+  "value_aliases": {
+    "Platform": {
+      "Youtube": "YouTube"
+    },
+    "Campaign": {
+      "Co op": "Co-Op",
+      "Co Op": "Co-Op"
+    },
+    "Audiences": {
+      "Norcal": "NorCal"
+    }
+  },
+  "expected_values": {
+    "Platform": ["Facebook", "Instagram", "YouTube", "TikTok", "Pinterest", "NextDoor", "Reddit"],
+    "Goal": ["Traffic", "Awareness", "Video Views", "Direct Response"],
+    "Campaign": ["Brand", "Co-Op", "Retainer", "Episodic", "Retail", "Air Services", "Compression", "HIT", "Locals", "Weddings", "FIFA"]
+  }
+}
